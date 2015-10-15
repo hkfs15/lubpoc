@@ -1,0 +1,19 @@
+{% extends "lub/index.html" %}
+
+{% block contentbody %}
+
+    {% if cars %}
+        <ul class="list-group">
+        {% for c in cars %}
+            <a href="{% url 'lub:car_detail' c.id %}">
+            <li class="list-group-item">
+                {{c.series.make.name}} - {{c.series.name}} - {{ c.model }} - {{c.year}}
+            </li>
+            </a>
+        {% endfor %}
+        </ul>
+    {% else %}
+        There is no cars yet.
+    {% endif %}
+
+{% endblock contentbody %}

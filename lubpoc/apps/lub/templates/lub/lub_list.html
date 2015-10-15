@@ -1,0 +1,18 @@
+{% extends "lub/index.html" %}
+
+{% block contentbody %}
+
+    {% if lubs %}
+        <ul class="list-group">
+        {% for c in lubs %}
+            <a href="{% url 'lub:lub_detail' c.id %}">
+            <li class="list-group-item">
+                {{ c.name }} - {{c.motor_type}} - {{c.lub_type}} - {{c.sae_grade}} - {{ c.pourpoint }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        There is no lubs yet.
+    {% endif %}
+
+{% endblock contentbody %}

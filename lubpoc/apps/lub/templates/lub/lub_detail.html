@@ -1,0 +1,35 @@
+{% extends "lub/index.html" %}
+
+{% block contentbody %}
+    {% if lub %}
+    <p>
+        <h4>Lub detail</h4>
+        {{ lub.make.name|title }}
+        {{ lub.name|title}}
+        {{ lub.motor_type }}
+        {{ lub.lub_type }}
+        {{ lub.sae_grade }}
+        {{ lub.pourpoint}}
+    </p>
+    {% endif %}
+    <br/>
+    
+    <p>
+    <h4>Listed in car user manual</h4>
+        {% if cars %}
+    <ul class="list-group">
+    {% for c in cars %}
+        <a href="{% url 'lub:car_detail' c.id %}">
+        <li class="list-group-item">
+        {{ c.model }}
+        {{c.series.make.name}}
+        {{c.series.name}}
+        </li></a>
+    {% endfor %}
+    </ul>
+    {% else %}
+        No matched cars.
+    {% endif %}
+    </p>
+
+{% endblock contentbody %}

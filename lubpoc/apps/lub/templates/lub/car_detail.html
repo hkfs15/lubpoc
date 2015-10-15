@@ -1,0 +1,54 @@
+{% extends "lub/index.html" %}
+
+{% block contentbody %}
+    {% if car %}
+    <p>
+        <h4>Car detail</h4>
+        {{ car.model }}
+        {{car.series.make.name}}
+        {{car.series.name}}
+        {{car.year}}<br/>
+        {{car.motor_type}}<br/>
+        {{car.lub_type}}
+    </p>
+    {% endif %}
+    <br/>
+
+    
+    {% if engine %}
+    <p>
+        <h4>Engine Detail</h4>
+        {{ engine.model }}
+        {{ engine.brand }}
+    </p>
+    {% endif %}
+
+    <br/>
+    {% if mll %}
+    <h4>Recommend in car manual</h4>
+    <ul class="list-group">
+    {% for m in mll %}
+        <a href="{% url 'lub:lub_detail' m.id %}">
+        <li class="list-group-item">
+            {{ m.lubmake.name|title }} - {{ m.name|title}}
+        </li></a>
+    {% endfor %}
+    </ul>
+    {% endif %}
+
+    <br/>
+    <h4>Matched by car <b>MOTOR</b> and <b>LUB TYPE</b> criteria </h4>
+    {% if matched_lub %}
+    <ul class="list-group">
+    {% for m in matched_lub %}
+        <a href="{% url 'lub:lub_detail' m.id %}">
+        <li class="list-group-item">
+            {{ m.lubmake.name|title }} - {{ m.name|title}}
+        </li></a>
+    {% endfor %}
+    </ul>
+    {% else %}
+        No matched lubs.
+    {% endif %}
+    
+{% endblock contentbody %}

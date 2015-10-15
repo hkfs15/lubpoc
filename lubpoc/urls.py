@@ -16,6 +16,11 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from .apps.lub import urls as lub_urls
+from . import views
+
 urlpatterns = [
+    url(r'^$', views.index, name='home'),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^lub/', include(lub_urls, namespace='lub')),
 ]
